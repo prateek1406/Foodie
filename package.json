@@ -1,0 +1,24 @@
+{
+  "name": "foodie",
+  "version": "1.0.0",
+  "description": "Foodie",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/prateek1406/Foodie.git"
+  },
+  "author": "Prateek",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/prateek1406/Foodie/issues"
+  },
+  "homepage": "https://github.com/prateek1406/Foodie#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "hbs": "^4.0.4"
+  }
+}
