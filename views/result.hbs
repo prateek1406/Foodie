@@ -1,0 +1,211 @@
+
+<html>
+<head>
+<title>Foodie App</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.lineicons.com/1.0.1/LineIcons.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+<link href="https://fonts.googleapis.com/css?family=Leckerli+One&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+<link rel="icon" href="img/thumbs-up.svg" type="image/x-icon"/>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link rel="stylesheet" href="css/materialize.min.css">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<style>
+body
+{
+    color:white;
+    font-family: 'Roboto', sans-serif;
+}
+.first
+{
+    background:url('img/main_div.jpg');
+    background-size:cover;
+    height:100vh;
+    background-position: center;
+    background-repeat: no-repeat;
+    width:100%;
+}
+.box
+{
+    background-color:transparent;
+    box-shadow: 0 5px 15px 0 rgba(0,0,0,0.5), 0 5px 15px 0 rgba(0,0,0,0.3);
+    margin-top:100px;
+    border-radius:10px;
+}
+.btn 
+ {
+     
+     border:none;
+     background-color:transparent;
+     color:white;
+     border:2px solid white;
+     border-radius:20px;
+     padding:10px 10px;  
+     width:150px;
+     
+     
+}
+.btn:hover 
+{
+color: #fff;
+border-color: #e75264;
+background: #e75264;
+}
+</style>
+</head>
+<body>
+<div class="first">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-2 col-md-2 col-lg-2 col-xs-12"></div>
+            <div class="col-sm-8 col-md-8 col-lg-8 col-xs-12">
+                <div class="container-fluid box" style="text-align:center;margin:30px auto;width:auto;height:auto;">
+                    <div class="row">
+                        <div class="col-12" style="text-align:center;"><img src="img/thumbs-up.svg" style="width:100px;height:100px;margin-top:50px;"></div>
+                        <div class="col-12" style="text-align:center;font-size:60px;font-family: 'Leckerli One', cursive">Restaurant</div>
+                        <div class="col-12" style="text-align:center;font-size:60px;font-family: 'Leckerli One', cursive">Review</div>
+                        <div class="col-12" style="text-align:center;font-size:22px;">YOUR GUIDE TO GOOD</div>
+                        <div class="col-12" style="text-align:center;font-size:22px;">RESTAURANTS</div>
+                        <div class="col-12" style="text-align:center;color: #b3b2b2;">Find and share restaurant reviews</div>
+                        <div class="col-12">
+                            <form style="text-align:center;margin-top:20px;" action='/search' id='form' method="post">
+                                <input type="submit" class="btn" id="button" style="" value="Search">
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-2 col-md-2 col-lg-2 col-xs-12"></div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid" style="height:20px;"></div>
+<div id="main" style="margin-top:10px;"></div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script>
+    function ready()
+    {
+   fetch('http://localhost:3000/query')
+    .then(function (response) {
+        return response.json();
+    })
+    .then(function (data) {
+        console.log(data);
+        var div=document.getElementById('main');
+        var container=document.createElement('div');
+        container.setAttribute("class","container-fluid");
+        var row=document.createElement('div');
+        row.setAttribute("class","row");
+        container.appendChild(row);
+        div.appendChild(container);
+        for(var i=0;i<data.length;i++)
+        {
+            
+            var col=document.createElement('div');
+            col.setAttribute("class","col-lg-4 col-md-4 col-sm-4 col-xs-12");
+            var card=document.createElement('div');
+            card.setAttribute("class","card");
+            var image=document.createElement('div');
+            image.setAttribute("class","card-image waves-effect waves-block waves-light");
+            var image_content=document.createElement('img');
+            image_content.setAttribute("class","activator");
+            image_content.setAttribute('src',(data[i]).url);
+            image_content.setAttribute("width","80px");
+            image_content.setAttribute("height","230px")
+            image.appendChild(image_content);
+            var content=document.createElement('div');
+            content.setAttribute("class","card-content");
+            var span=document.createElement('span');
+            span.setAttribute("class","card-title activator grey-text text-darken-4");
+            var data1=document.createTextNode((data[i]).name);
+            span.appendChild(data1);
+            var icon=document.createElement('i');
+            icon.setAttribute("class","material-icons right");
+            var data2=document.createTextNode("more_vert");
+            icon.appendChild(data2);
+            span.appendChild(icon);
+            var p=document.createElement('p');
+            var link=document.createElement('a');
+            link.setAttribute("href","#");
+            var data3=document.createTextNode((data[i]).rating);
+            link.appendChild(data3);
+            p.appendChild(link);
+            content.appendChild(span);
+            content.appendChild(p);
+            var reveal=document.createElement('div');
+            reveal.setAttribute("class","card-reveal");
+            var span1=document.createElement('span');
+            span1.setAttribute("class","card-title grey-text text-darken-4");
+            var data5=document.createTextNode("Card Title");
+            span1.appendChild(data5);
+            var icon1=document.createElement('i');
+            icon1.setAttribute("class","material-icons right");
+            var data4=document.createTextNode("close");
+            icon1.appendChild(data4);
+            span1.appendChild(icon1);
+            var p1=document.createElement('p');
+            p1.setAttribute("style","color:black;")
+            var data6=document.createTextNode("Here is some more information about this product that is only revealed once clicked on.");
+            p1.appendChild(data6);
+            reveal.appendChild(span1);
+            reveal.appendChild(p1);
+            card.appendChild(reveal);
+            card.appendChild(image);
+            card.appendChild(content);
+            col.appendChild(card);
+            row.appendChild(col);
+            
+    }
+          container.appendChild(col);
+    })
+    .catch(function (err) {
+        console.log("Something went wrong!", err);
+    });
+    
+    }
+    document.addEventListener("DOMContentLoaded", ready);
+</script>
+<div class="container-fluid" style="background-color:#3c3c3c;">
+     <div class="row">
+         <div class="col-lg-6 col-sm-12 col-xs-12" style="text-align:left;color:inherit;font-family: 'Leckerli One', cursive;height:auto;">
+            <div class="row">
+                <div style="margin:auto auto;padding:15px 15px;">
+                    <div class="col-12"> <img src="img/thumbs-up.svg" style="height:50px;width:50px;float:center;transform:translate(10px);margin-top:30px;"></div>
+                    <div class="col-12" style="font-size:60px;width:auto;">Restaurant</div>
+                    <div class="col-12" style="font-size:60px;width:auto;">Review</div>
+                </div>
+            </div>
+         </div>
+         <div class="col-lg-6 col-sm-12 col-xs-12" style="font-size:40px;font-family: 'Leckerli One', cursive;height:auto;">
+            <div class="row">
+                <div class="col-12">
+                    <div style="text-align:center;margin-top:20px;">About The Developer</div>
+                </div>
+                <div class="col-12">
+                    <div class="col-12" style="text-align:center;">
+                    <img src="img/developer1.jpeg" style="width:150px;height:150px;border-radius:50%;">
+                    </div>
+                </div>
+                <div class="col-12" >
+                    <div style="text-align:center;margin-top:10px;">
+                        <a href="https://www.linkedin.com/in/prateek-agarwal-44975a170/" style="text-decoration:none;" ><i class="lni-linkedin-original" style="color:white;"></i></a>
+                         <a href="https://www.facebook.com/prateek.agarwal.927758" style="text-decoration:none;" ><i class="lni-facebook-filled" style="color:white;"></i></a>                     
+                        <a href="https://github.com/prateek1406" style="text-decoration:none;" ><i class="lni-github-original" style="color:white;"></i></a>
+                         <a href="https://www.instagram.com/prateek_agarwal14/" style="text-decoration:none;" ><i class="lni-instagram-original" style="color:white;"></i></a>
+                        
+                    </div>
+                </div>
+             </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
