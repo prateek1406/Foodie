@@ -33,11 +33,24 @@ app.get('/', (req,res) => {
 
 //   client.close();
 // });
+
+
 app.post('/search',(req,res)=>{
 //  console.log(req.body.find);
  res.render('result.hbs');
    
  });
+
+ app.get('/view',(req,res)=>{
+    //  console.log(req.body.find);
+     res.render('view.hbs');
+       
+     });
+app.get('/show',(req,res)=>{
+    console.log("dhsjdjks");
+    console.log(req.body.username);
+});
+
    app.get('/query',(req,res)=>{
     //    console.log(req.body.find);
     const uri = process.env.MONGO_URI;

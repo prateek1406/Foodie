@@ -1,7 +1,6 @@
-
 <html>
 <head>
-<title>Foodie Restaurant Review</title>
+<title>Foodie App</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdn.lineicons.com/1.0.1/LineIcons.min.css">
@@ -93,7 +92,7 @@ background: #e75264;
 <script>
     function ready()
     {
-   fetch('https://foodie-rate.herokuapp.com/query')
+   fetch('http://localhost:3000/query')
     .then(function (response) {
         return response.json();
     })
@@ -134,9 +133,15 @@ background: #e75264;
             span.appendChild(icon);
             var p=document.createElement('p');
             var link=document.createElement('a');
-            link.setAttribute("href","#");
-            var data3=document.createTextNode((data[i]).rating);
-            link.appendChild(data3);
+            link.setAttribute("style","text-decoration:none;color:black;")
+            link.setAttribute("href","/view");
+            link.setAttribute("onClick","reply_click(this.id)");
+            link.setAttribute("id",i);
+            var icon2=document.createElement('i');
+            icon2.setAttribute("class","material-icons");
+            var data6=document.createTextNode("comment");
+            icon2.appendChild(data6);
+            link.appendChild(icon2);
             p.appendChild(link);
             content.appendChild(span);
             content.appendChild(p);
@@ -171,7 +176,6 @@ background: #e75264;
     });
     
     }
-    document.addEventListener("DOMContentLoaded", ready);
 </script>
 <div class="container-fluid" style="background-color:#3c3c3c;">
      <div class="row">
@@ -207,5 +211,35 @@ background: #e75264;
         </div>
     </div>
 </div>
+<script>
+
+    function reply_click(clicked_id)
+    {
+        
+        /*fetch('http://localhost:3000/show', {
+                method: 'POST',
+                headers : new Headers(),
+                body:JSON.stringify({id:id})
+            }).then((res) => res.json())
+            .then((data) =>  console.log(data))
+            .catch((err)=>console.log(err))*/
+           fetch('http://localhost:3000/show', {  
+            method: 'POST',  
+            headers: {  
+            'auth': '1234'  
+            },  
+            body: JSON.stringify({
+            name: 'dean',
+            login: 'dean',
+        })
+        })
+        .then(function (data) {  
+        console.log('Request success: ', data);  
+        })  
+        .catch(function (error) {  
+        console.log('Request failure: ', error);  
+        });
+    }
+</script>
 </body>
 </html>
