@@ -213,33 +213,7 @@ background: #e75264;
 </div>
 <script>
 
-    function reply_click(clicked_id)
-    {
-        
-        /*fetch('http://localhost:3000/show', {
-                method: 'POST',
-                headers : new Headers(),
-                body:JSON.stringify({id:id})
-            }).then((res) => res.json())
-            .then((data) =>  console.log(data))
-            .catch((err)=>console.log(err))*/
-           fetch('http://localhost:3000/show', {  
-            method: 'POST',  
-            headers: {  
-            'auth': '1234'  
-            },  
-            body: JSON.stringify({
-            name: 'dean',
-            login: 'dean',
-        })
-        })
-        .then(function (data) {  
-        console.log('Request success: ', data);  
-        })  
-        .catch(function (error) {  
-        console.log('Request failure: ', error);  
-        });
-    }
+   
 </script>
 </body>
 </html>
