@@ -16,7 +16,6 @@ app.use(express.static(__dirname + '/views') );
 app.set('view engine', hbs);
 app.use(cookieParser());
 
-// console.log(process.env.MONGO_URI);
 
 app.get('/', (req,res) => {
     res.render('index.hbs');
@@ -30,15 +29,12 @@ app.get('/view',(req,res)=>{
        
 });
 app.post('/show',(req,res)=>{
-    var id=req.body.number;
-    res.cookie('test', id);
+    res.app.set('id', req.body.number)
 
 });
 app.get('/send',(req,res)=>{
-    //  console.log(req.body.find);
-    //  console.log(req.cookies);
-    const data = req.cookies['test']; // get signed cookies 
-
+    
+    const id=res.app.get('id');
     const uri = process.env.MONGO_URI;
     MongoClient.connect(uri,{ useNewUrlParser: true }, (erro,client) => {
         if (erro){
@@ -51,7 +47,7 @@ app.get('/send',(req,res)=>{
             if (erro) {
                 console.log('Unable to add the weather data', erro);
             }
-            res.json(result[data]);
+            res.json(result[id]);
         });
         client.close();
         });
