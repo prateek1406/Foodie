@@ -207,6 +207,23 @@ background: #e75264;
         </div>
     </div>
 </div>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script>
+        function reply_click(clicked_id)
+        {
+              $(document).ready(function() { 
+               $.ajax({
+                   url: 'https://foodie-rate.herokuapp.com/show',
+                   type:'POST',
+                   contentType:'application/json',
+                   data:JSON.stringify({number:clicked_id})
 
+
+               });
+              });
+        
+        }
+   
+</script>
 </body>
 </html>
