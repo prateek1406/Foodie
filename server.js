@@ -51,7 +51,7 @@ app.get('/send',(req,res)=>{
             if (erro) {
                 console.log('Unable to add the weather data', erro);
             }
-            res.json(result[data['test']]);
+            res.json(result[0]);
         });
         client.close();
         });
