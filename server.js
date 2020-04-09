@@ -31,13 +31,13 @@ app.get('/view',(req,res)=>{
 });
 app.post('/show',(req,res)=>{
     var id=req.body.number;
-    res.cookie('test', id, cookieConfig);
+    res.cookie('test', id);
 
 });
 app.get('/send',(req,res)=>{
     //  console.log(req.body.find);
     //  console.log(req.cookies);
-    const data = req.cookies; // get signed cookies 
+    const data = req.cookies['test']; // get signed cookies 
 
     const uri = process.env.MONGO_URI;
     MongoClient.connect(uri,{ useNewUrlParser: true }, (erro,client) => {
@@ -51,7 +51,7 @@ app.get('/send',(req,res)=>{
             if (erro) {
                 console.log('Unable to add the weather data', erro);
             }
-            res.json(result[0]);
+            res.json(result[data]);
         });
         client.close();
         });
