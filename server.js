@@ -21,13 +21,6 @@ app.use(cookieParser());
 app.get('/', (req,res) => {
     res.render('index.hbs');
 });
-const cookieConfig = {
-    httpOnly: true, // to disable accessing cookie via client side js
-    //secure: true, // to force https (if you use it)
-    maxAge: 1000000000, // ttl in ms (remove this option and cookie will die when browser is closed)
-    signed: false // if you use the secret with cookieParser
-  };
-
 app.post('/search',(req,res)=>{
  res.render('result.hbs');
    
@@ -44,8 +37,7 @@ app.post('/show',(req,res)=>{
 app.get('/send',(req,res)=>{
     //  console.log(req.body.find);
     //  console.log(req.cookies);
-    const signedCookies = req.signedCookies; // get signed cookies
-    console.log('signed-cookies:', signedCookies);  
+    const data = req.cookies; // get signed cookies 
 
     const uri = process.env.MONGO_URI;
     MongoClient.connect(uri,{ useNewUrlParser: true }, (erro,client) => {
@@ -59,7 +51,7 @@ app.get('/send',(req,res)=>{
             if (erro) {
                 console.log('Unable to add the weather data', erro);
             }
-            res.json(result[signedCookies['test']]);
+            res.json(result[data['test']]);
         });
         client.close();
         });
