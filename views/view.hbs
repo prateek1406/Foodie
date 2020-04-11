@@ -1,51 +1,223 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Foodie App</title>
-    
-  
-
+<title>Foodie Restaurant Review</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdn.lineicons.com/1.0.1/LineIcons.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
-    <link href="https://fonts.googleapis.com/css?family=Leckerli+One&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
-   <link rel="icon" href="img/thumbs-up.svg" type="image/x-icon"/>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.lineicons.com/1.0.1/LineIcons.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+<link href="https://fonts.googleapis.com/css?family=Leckerli+One&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+<link rel="icon" href="img/thumbs-up.svg" type="image/x-icon"/>
    
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <link rel="stylesheet" href="css/materialize.min.css">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <style>
+.comment 
+{
+    display:none;
+    color:black;
+    font-size:40px;
+    margin-top:10px;
+    text-align:center;
+}
+.second
+{
+    background:url('img/third_div.jpg');
+    background-size:cover;
+    height:120vh;
+    background-position: center;
+    background-repeat: no-repeat;
+    width:100%;
+}
+.button 
+ {
+     border:none;
+     background: #e75264;
+     color:white;
+     border:2px solid white;
+    border-radius:20px;
+    padding:10px 10px;
+    width:100px;
+                    
+}
 
+.star-rating {
+    direction: rtl;
+    display: inline-block;
+    padding: 20px
+}
+
+.star-rating input[type=radio] {
+    display: none
+}
+
+.star-rating label {
+    color: #bbb;
+    font-size: 30px;
+    padding: 0;
+    cursor: pointer;
+    -webkit-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out
+}
+
+.star-rating label:hover,
+.star-rating label:hover ~ label,
+.star-rating input[type=radio]:checked ~ label {
+    color: #f2b600
+}
 
 </style>
 </head>
 <body>
+<div class="second">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-3 col-lg-3 col-xs-12"></div>
+            <div class="col-lg-6 col-xs-12 col-sm-6">
+            <div class="container-fluid" style="text-align:center;margin:10px auto;width:auto;height:auto;">
+                <div class="row">
+                        <div>
+                            <img src="img/img3.webp" style="width:100%;height:100%;">
+                        </div>
+                        <div style="background-color:white;">
+                            <div class="row">
+                                <div class="col-lg-12 col-xs-6">
+                                    <div style="text-align:center;margin-top:20px;color:#b3b2b2;;font-size:20px;line-height:20px;padding:10px;">Share your food experiences with stars and comments.</div>
+
+                                </div>
+                                <div class="col-12">
+                                    <div style="margin-top:10px;padding:20px;">
+                                        <img src="img/star.svg" style="height:50px;width:50px;">
+                                        <img src="img/star.svg" style="height:50px;width:50px;">
+                                        <img src="img/star.svg" style="height:50px;width:50px;">
+                                        <img src="img/star.svg" style="height:50px;width:50px;">
+                                        <img src="img/star.svg" style="height:50px;width:50px;">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3 col-lg-3 col-xs-12"></div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid" style="margin-top:20px;">
+    <div class="row">
+        <div class="col-lg-2 col-xs-12 col-md-12 col-sm-12"></div>
+        <div class="col-lg-8 col-xs-12 col-md-12 col-sm-12" style="height:auto;">
+                <div class="row">
+                    <div class="col-lg-12 col-xs-12 col-md-12 col-sm-12">
+                        
+                       <div style="width:auto;height:300px;margin-top:10px;text-align:left;">
+                           <form class="form" action="/submit" method="post" style="text-align:left;">
+                                <div style="text-align:center;font-size:30px;font-family: 'Roboto', sans-serif;margin-top:10px;font-weight:normal;">Post a Review   <i class='lni lni-pencil' style="font-size:25px;"></i></div>
+                                <div class="col-12" style="font-size:30px;">
+                                    <div class="star-rating">
+                                         <input id="star-5" type="radio" name="rating" value="5" />
+                                         <label for="star-5" title="5 stars"><i class="active fa fa-star" aria-hidden="true"></i> </label>
+                                         <input id="star-4" type="radio" name="rating" value="4" /><label for="star-4" title="4 stars"><i class="active fa fa-star" aria-hidden="true"></i></label>
+                                         <input id="star-3" type="radio" name="rating" value="3" />
+                                         <label for="star-3" title="3 stars"><i class="active fa fa-star" aria-hidden="true"></i></label>
+                                         <input id="star-2" type="radio" name="rating" value="2" />
+                                         <label for="star-2" title="2 stars"><i class="active fa fa-star" aria-hidden="true"></i></label>
+                                         <input id="star-1" type="radio" name="rating" value="1" />
+                                         <label for="star-1" title="1 star"><i class="active fa fa-star" aria-hidden="true"></i></label>
+                                    </div>
+                                </div>
+                                <div class="col-12" style="text-align:left;margin-top:20px;color:black;" >
+                                    <textarea class="form-control" name="comment" placeholder="Leave your comments here...."></textarea>
+                                </div>
+                                <div class="col-12" style="text-align:left;margin-top:20px;color:black;" >
+                                <button type="submit" class="button">Post</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+              </div>  
+        </div>
+        <div class="col-lg-2 col-xs-12 col-md-12 col-sm-12"></div>
+    </div>
+</div>
+<div id="comments" class="container-fluid comment" style="margin-top:20px;">No comments yet <i class='lni lni-comments-alt' style="color:black;font-size:30px;"></i></div>
 <div class="container-fluid">
     <div class="row">
-        <div class="col-lg-4 col-xs-12">
-            <div class="card">
-                <div class="card-image waves-effect waves-block waves-light">
-                    <img class="activator" src="img/office.jpg">
+
+        <div class="col-lg-4 col-xs-12 col-md-4 col-sm-12">
+            <div class="box" style="width:auto;height:auto;margin:auto auto;">
+                 <div class="row">
+
+                    <div class="col-12" style="font-size:40px;text-align:center;color:rgb(221, 112, 130);"><i class='lni lni-dinner'></i></div>
+                    <div class="col-12" style="font-size:10px;color:black;text-align:center;">nsnskdnskdnksdnksndsndndandsanddnjadnasnd
+                        sandjksadnsajkdnsandjksdnjkndadsabdjnsadjnsajkdndnjka
+                    </div>
                 </div>
-                <div class="card-content">
-                    <span class="card-title activator grey-text text-darken-4">Card Title<i class="material-icons right">more_vert</i></span>
-                    <p><a href="#">This is a link</a></p>
+
+            </div>
+        </div>
+        <div class="col-lg-4 col-xs-12 col-md-4 col-sm-12">
+            <div class="box" style="width:auto;height:auto;margin:auto auto;">
+                <div class="row">
+
+                    <div class="col-12" style="font-size:40px;text-align:center;color:rgb(221, 112, 130);"><i class='lni lni-heart-filled'></i></div>
+                    <div class="col-12" style="font-size:10px;color:black;text-align:center;">nsnskdnskdnksdnksndsndndandsanddnjadnasnd
+                        sandjksadnsajkdnsandjksdnjkndadsabdjnsadjnsajkdndnjka
+                    </div>
                 </div>
-                <div class="card-reveal">
-                    <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
-                    <p>Here is some more information about this product that is only revealed once clicked on.</p>
+
+            </div>
+        </div>
+        <div class="col-lg-4 col-xs-12 col-md-4 col-sm-12">
+            <div class="box" style="width:auto;height:auto;margin:auto auto;">
+                 <div class="row">
+
+                    <div class="col-12" style="font-size:40px;text-align:center;color:rgb(221, 112, 130);"><i class='lni lni-restaurant'></i></div>
+                    <div class="col-12" style="font-size:10px;color:black;text-align:center;">nsnskdnskdnksdnksndsndndandsanddnjadnasnd
+                        sandjksadnsajkdnsandjksdnjkndadsabdjnsadjnsajkdndnjka
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
- <script>
+<div class="container-fluid" style="background-color:#3c3c3c;height:100%;">
+     <div class="row">
+         <div class="col-lg-6 col-sm-12 col-xs-12" style="text-align:left;color:inherit;font-family: 'Leckerli One', cursive;height:auto;color:white;">
+            <div class="row">
+                <div style="margin:auto auto;padding:15px 15px;">
+                    <div class="col-12"> <img src="img/thumbs-up.svg" style="height:50px;width:50px;float:center;transform:translate(10px);margin-top:30px;"></div>
+                    <div class="col-12" style="font-size:60px;width:auto;">Restaurant</div>
+                    <div class="col-12" style="font-size:60px;width:auto;">Review</div>
+                </div>
+            </div>
+         </div>
+         <div class="col-lg-6 col-sm-12 col-xs-12" style="font-size:40px;font-family: 'Leckerli One', cursive;height:auto; color:white;">
+            <div class="row">
+                <div class="col-12">
+                    <div style="text-align:center;margin-top:20px;">About The Developer</div>
+                </div>
+                <div class="col-12">
+                    <div class="col-12" style="text-align:center;">
+                    <img src="img/developer1.jpeg" style="width:150px;height:150px;border-radius:50%;">
+                    </div>
+                </div>
+                <div class="col-12" >
+                    <div style="text-align:center;margin-top:10px;">
+                        <a href="https://www.linkedin.com/in/prateek-agarwal-44975a170/" style="text-decoration:none;" ><i class='lni lni-linkedin-original' style="color:white;"></i></a>
+                         <a href="https://www.facebook.com/prateek.agarwal.927758" style="text-decoration:none;" ><i class='lni lni-facebook-filled' style="color:white;"></i></a>                     
+                        <a href="https://github.com/prateek1406" style="text-decoration:none;" ><i class='lni lni-github-original' style="color:white;"></i></a>
+                         <a href="https://www.instagram.com/prateek_agarwal14/" style="text-decoration:none;" ><i class='lni lni-instagram-original' style="color:white;"></i></a>
+                        
+                    </div>
+                </div>
+             </div>
+        </div>
+    </div>
+</div>
 
-    
- </script>  
-<script src="js/materialize.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
