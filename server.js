@@ -4,24 +4,15 @@ const bodyParser=require('body-parser');
 const MongoClient = require('mongodb').MongoClient;
 const cors = require("cors");
 require('dotenv/config');
-var cookieParser = require('cookie-parser')
-const session = require('express-session')
 
 const port =process.env.PORT || 3000;
 
 var app = express();
-app.use(session({
-    secret: 'secret',
-    resave: false,
-    saveUninitialized: true,
-    cookie: { maxAge: 60000 }
-}));
 app.use(cors());
 app.use(bodyParser.urlencoded({extended : true}));
 app.use(bodyParser.json());
 app.use(express.static(__dirname + '/views') );
 app.set('view engine', hbs);
-app.use(cookieParser());
 
 app.get('/', (req,res) => {
     res.render('index.hbs');
