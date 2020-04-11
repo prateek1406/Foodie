@@ -3,7 +3,6 @@
 <title>Foodie Restaurant Review</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-<link rel="stylesheet" href="https://cdn.lineicons.com/1.0.1/LineIcons.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
 <link href="https://fonts.googleapis.com/css?family=Leckerli+One&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
@@ -11,6 +10,7 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <link rel="stylesheet" href="css/materialize.min.css">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.lineicons.com/2.0/LineIcons.css">
 <style>
 body
 {
@@ -83,14 +83,47 @@ background: #e75264;
 <div class="container-fluid" style="height:20px;"></div>
 <div id="main" style="margin-top:10px;"></div>
 
-
+<div class="container-fluid" style="background-color:#3c3c3c;">
+     <div class="row">
+         <div class="col-lg-6 col-sm-12 col-xs-12" style="text-align:left;color:inherit;font-family: 'Leckerli One', cursive;height:auto;">
+            <div class="row">
+                <div style="margin:auto auto;padding:15px 15px;">
+                    <div class="col-12"> <img src="img/thumbs-up.svg" style="height:50px;width:50px;float:center;transform:translate(10px);margin-top:30px;"></div>
+                    <div class="col-12" style="font-size:60px;width:auto;">Restaurant</div>
+                    <div class="col-12" style="font-size:60px;width:auto;">Review</div>
+                </div>
+            </div>
+         </div>
+         <div class="col-lg-6 col-sm-12 col-xs-12" style="font-size:40px;font-family: 'Leckerli One', cursive;height:auto;">
+            <div class="row">
+                <div class="col-12">
+                    <div style="text-align:center;margin-top:20px;">About The Developer</div>
+                </div>
+                <div class="col-12">
+                    <div class="col-12" style="text-align:center;">
+                    <img src="img/developer1.jpeg" style="width:150px;height:150px;border-radius:50%;">
+                    </div>
+                </div>
+                <div class="col-12" >
+                    <div style="text-align:center;margin-top:10px;">
+                        <a href="https://www.linkedin.com/in/prateek-agarwal-44975a170/" style="text-decoration:none;" ><i class="lni lni-linkedin-original" style="color:white;"></i></a>
+                         <a href="https://www.facebook.com/prateek.agarwal.927758" style="text-decoration:none;" ><i class="lni lni-facebook-oval" style="color:white;"></i></a>                     
+                        <a href="https://github.com/prateek1406" style="text-decoration:none;" ><i class="lni lni-github-original" style="color:white;"></i></a>
+                         <a href="https://www.instagram.com/prateek_agarwal14/" style="text-decoration:none;" ><i class="lni lni-instagram-original" style="color:white;"></i></a>
+                        
+                    </div>
+                </div>
+             </div>
+        </div>
+    </div>
+</div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <script>
-   fetch('https://foodie-rate.herokuapp.com/query')
+   fetch('http://localhost:3000/query')
     .then(function (response) {
         return response.json();
     })
@@ -130,15 +163,21 @@ background: #e75264;
             icon.appendChild(data2);
             span.appendChild(icon);
             var p=document.createElement('p');
+            p.setAttribute("style","color:black;")
+            var data_r=document.createTextNode(data[i].rating+"  ");
+            p.appendChild(data_r);
+            var rating=document.createElement('i');
+            rating.setAttribute("class","lni lni-star-filled");
+            rating.setAttribute("style","color:gold");
+            p.appendChild(rating);
             var link=document.createElement('a');
-            link.setAttribute("style","text-decoration:none;color:black;")
+            link.setAttribute("style","text-decoration:none;color:black;font-size:20px;margin-left:10px;")
             link.setAttribute("href","/view");
             link.setAttribute("onClick","reply_click(this.id)");
             link.setAttribute("id",i);
             var icon2=document.createElement('i');
-            icon2.setAttribute("class","material-icons");
-            var data6=document.createTextNode("comment");
-            icon2.appendChild(data6);
+            icon2.setAttribute("class","lni lni-comments");
+            icon2.setAttribute("style","color:black;")
             link.appendChild(icon2);
             p.appendChild(link);
             content.appendChild(span);
@@ -147,7 +186,7 @@ background: #e75264;
             reveal.setAttribute("class","card-reveal");
             var span1=document.createElement('span');
             span1.setAttribute("class","card-title grey-text text-darken-4");
-            var data5=document.createTextNode("Card Title");
+            var data5=document.createTextNode(data[i].name);
             span1.appendChild(data5);
             var icon1=document.createElement('i');
             icon1.setAttribute("class","material-icons right");
@@ -156,7 +195,7 @@ background: #e75264;
             span1.appendChild(icon1);
             var p1=document.createElement('p');
             p1.setAttribute("style","color:black;")
-            var data6=document.createTextNode("Here is some more information about this product that is only revealed once clicked on.");
+            var data6=document.createTextNode("Type: "+data[i].type);
             p1.appendChild(data6);
             reveal.appendChild(span1);
             reveal.appendChild(p1);
@@ -173,40 +212,7 @@ background: #e75264;
         console.log("Something went wrong!", err);
     });
 </script>
-<div class="container-fluid" style="background-color:#3c3c3c;">
-     <div class="row">
-         <div class="col-lg-6 col-sm-12 col-xs-12" style="text-align:left;color:inherit;font-family: 'Leckerli One', cursive;height:auto;">
-            <div class="row">
-                <div style="margin:auto auto;padding:15px 15px;">
-                    <div class="col-12"> <img src="img/thumbs-up.svg" style="height:50px;width:50px;float:center;transform:translate(10px);margin-top:30px;"></div>
-                    <div class="col-12" style="font-size:60px;width:auto;">Restaurant</div>
-                    <div class="col-12" style="font-size:60px;width:auto;">Review</div>
-                </div>
-            </div>
-         </div>
-         <div class="col-lg-6 col-sm-12 col-xs-12" style="font-size:40px;font-family: 'Leckerli One', cursive;height:auto;">
-            <div class="row">
-                <div class="col-12">
-                    <div style="text-align:center;margin-top:20px;">About The Developer</div>
-                </div>
-                <div class="col-12">
-                    <div class="col-12" style="text-align:center;">
-                    <img src="img/developer1.jpeg" style="width:150px;height:150px;border-radius:50%;">
-                    </div>
-                </div>
-                <div class="col-12" >
-                    <div style="text-align:center;margin-top:10px;">
-                        <a href="https://www.linkedin.com/in/prateek-agarwal-44975a170/" style="text-decoration:none;" ><i class="lni-linkedin-original" style="color:white;"></i></a>
-                         <a href="https://www.facebook.com/prateek.agarwal.927758" style="text-decoration:none;" ><i class="lni-facebook-filled" style="color:white;"></i></a>                     
-                        <a href="https://github.com/prateek1406" style="text-decoration:none;" ><i class="lni-github-original" style="color:white;"></i></a>
-                         <a href="https://www.instagram.com/prateek_agarwal14/" style="text-decoration:none;" ><i class="lni-instagram-original" style="color:white;"></i></a>
-                        
-                    </div>
-                </div>
-             </div>
-        </div>
-    </div>
-</div>
+
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script>
         function reply_click(clicked_id)

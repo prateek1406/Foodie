@@ -5,10 +5,17 @@ const MongoClient = require('mongodb').MongoClient;
 const cors = require("cors");
 require('dotenv/config');
 var cookieParser = require('cookie-parser')
+const session = require('express-session')
 
 const port =process.env.PORT || 3000;
 
 var app = express();
+app.use(session({
+    secret: 'secret',
+    resave: false,
+    saveUninitialized: true,
+    cookie: { maxAge: 60000 }
+}));
 app.use(cors());
 app.use(bodyParser.urlencoded({extended : true}));
 app.use(bodyParser.json());
@@ -16,14 +23,19 @@ app.use(express.static(__dirname + '/views') );
 app.set('view engine', hbs);
 app.use(cookieParser());
 
-
 app.get('/', (req,res) => {
     res.render('index.hbs');
 });
+
 app.post('/search',(req,res)=>{
  res.render('result.hbs');
    
  });
+ app.post('/submit',(req,res)=>{
+     console.log(req.body.rating);
+     console.log(req.body.comment);
+      
+    });
 app.get('/view',(req,res)=>{
      res.render('view.hbs');
        
@@ -33,8 +45,8 @@ app.post('/show',(req,res)=>{
 
 });
 app.get('/send',(req,res)=>{
-    
     const id=res.app.get('id');
+
     const uri = process.env.MONGO_URI;
     MongoClient.connect(uri,{ useNewUrlParser: true }, (erro,client) => {
         if (erro){
