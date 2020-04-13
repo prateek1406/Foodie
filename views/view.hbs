@@ -11,8 +11,8 @@
 <link rel="icon" href="img/thumbs-up.svg" type="image/x-icon"/>
    
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-<link rel="stylesheet" href="css/materialize.min.css">
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.lineicons.com/2.0/LineIcons.css">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
 <style>
 .comment 
 {
@@ -67,7 +67,13 @@
 .star-rating input[type=radio]:checked ~ label {
     color: #f2b600
 }
-
+.details
+   { 
+box-shadow: 0 5px 15px 0 rgba(0,0,0,0.1), 0 5px 15px 0 rgba(0,0,0,0.1);
+                    /* position:absolute; */
+                    /* transform:translate(40%); */
+                    border-radius:10px;
+   }
 </style>
 </head>
 <body>
@@ -93,7 +99,6 @@
                                         <img src="img/star.svg" style="height:50px;width:50px;">
                                         <img src="img/star.svg" style="height:50px;width:50px;">
                                         <img src="img/star.svg" style="height:50px;width:50px;">
-                                        <img src="img/star.svg" style="height:50px;width:50px;">
                                     </div>
                                 </div>
                             </div>
@@ -103,6 +108,11 @@
             </div>
             <div class="col-sm-3 col-lg-3 col-xs-12"></div>
         </div>
+    </div>
+</div>
+<div class="container-fluid" style="margin-top;20px">
+    <div id="restaurant">
+
     </div>
 </div>
 <div class="container-fluid" style="margin-top:20px;">
@@ -207,7 +217,7 @@
                 <div class="col-12" >
                     <div style="text-align:center;margin-top:10px;">
                         <a href="https://www.linkedin.com/in/prateek-agarwal-44975a170/" style="text-decoration:none;" ><i class='lni lni-linkedin-original' style="color:white;"></i></a>
-                         <a href="https://www.facebook.com/prateek.agarwal.927758" style="text-decoration:none;" ><i class='lni lni-facebook-filled' style="color:white;"></i></a>                     
+                         <a href="https://www.facebook.com/prateek.agarwal.927758" style="text-decoration:none;" ><i class='lni lni-facebook-oval' style="color:white;"></a>                     
                         <a href="https://github.com/prateek1406" style="text-decoration:none;" ><i class='lni lni-github-original' style="color:white;"></i></a>
                          <a href="https://www.instagram.com/prateek_agarwal14/" style="text-decoration:none;" ><i class='lni lni-instagram-original' style="color:white;"></i></a>
                         
@@ -231,6 +241,74 @@
     })
     .then(function (data) {
         console.log(data);
+        var f=document.getElementById('restaurant');
+      var name=document.createElement('div');
+      name.setAttribute("class","col-12");
+      name.setAttribute("style","text-align:center;font-size:40px;");
+      var data1=document.createTextNode(data.name);
+       name.appendChild(data1);
+       var rate_value=document.createElement('div');
+       rate_value.setAttribute("class","col-12");
+       rate_value.setAttribute("style","text-align:center;font-size:20px;");
+       var data2=document.createTextNode(data.rating+"  ");
+       var q=document.createElement('i');
+       q.setAttribute("class","lni lni-star-filled");
+       q.setAttribute("style","font-size:20px;color:gold")
+       rate_value.appendChild(data2);
+       rate_value.appendChild(q);
+       f.appendChild(name);
+       f.appendChild(rate_value);
+
+       var div=document.getElementById('comments');
+        if((data.comments).length==0)
+        {
+            div.setAttribute("style","display:block");
+        }
+        else
+        {
+            var div=document.getElementById("main");
+            var container=document.createElement('div');
+            container.setAttribute("class","container-fluid");
+            var row=document.createElement('div');
+            row.setAttribute("class","row");
+            let l=(data.comments).length;
+            let array=data.comments;
+            for(var i=0;i<l;i++)
+            {
+                var col=document.createElement('div');
+                col.setAttribute("class","col-lg-4 col-md-6 col-sm-6 col-xs-12");
+                var detail=document.createElement('div');
+                detail.setAttribute("class","details");
+                detail.setAttribute("style","width:auto;height:100px;margin:10px auto;");
+                var row1=document.createElement('div');
+                row1.setAttribute("class","row");
+                var img_div=document.createElement('div');
+                img_div.setAttribute("class","col-4");
+                img_div.setAttribute("style","text-align:center;");
+                var img=document.createElement('img');
+                img.setAttribute('src',"img/user.svg");
+                img.setAttribute("style","width:60px;height:60px;margin:20px auto;");
+                img_div.appendChild(img);
+                var comment=document.createElement('div');
+                comment.setAttribute("class","col-8");
+                comment.setAttribute("style","font-size:15px;margin:20px auto;");
+                var data=document.createTextNode(array[i]);
+                comment.appendChild(data);
+                row1.appendChild(img_div);
+                row1.appendChild(comment);
+                detail.appendChild(row1);
+                col.appendChild(detail);
+                row.appendChild(col);
+                
+                }
+                container.appendChild(row);
+                div.appendChild(container);
+                
+        }
+
+
+
+
          })
     .catch(function (err) {
         console.log("Something went wrong!", err);
