@@ -273,6 +273,7 @@ box-shadow: 0 5px 15px 0 rgba(0,0,0,0.1), 0 5px 15px 0 rgba(0,0,0,0.1);
             row.setAttribute("class","row");
             let l=(data.comments).length;
             let array=data.comments;
+            console.log(array);
             for(var i=0;i<l;i++)
             {
                 var col=document.createElement('div');
@@ -292,8 +293,8 @@ box-shadow: 0 5px 15px 0 rgba(0,0,0,0.1), 0 5px 15px 0 rgba(0,0,0,0.1);
                 var comment=document.createElement('div');
                 comment.setAttribute("class","col-8");
                 comment.setAttribute("style","font-size:15px;margin:20px auto;");
-                var data=document.createTextNode(array[i]);
-                comment.appendChild(data);
+                var data4=document.createTextNode(array[i]);
+                comment.appendChild(data4);
                 row1.appendChild(img_div);
                 row1.appendChild(comment);
                 detail.appendChild(row1);
