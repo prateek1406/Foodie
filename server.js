@@ -36,12 +36,12 @@ app.post('/search',(req,res)=>{
         console.log('Connected sucessfully');
         const db = client.db('Foodie');
         let rate=req.body.rating;
-        let a= (Math.random()*2);
-        a=a.toPrecision(2);
-        rate=(parseFloat(rate)+a)/2;
-        let rate1=rate.toString();
+        let a= 2.75;
+        rate=(parseFloat(rate)/2);
+        let rate1=rate.toPrecision(2);
+        let rate2=rate1.toString();
         var myquery = { id: id1 };
-        var newvalues = {$set: {rating : rate1}};
+        var newvalues = {$set: {rating : rate2}};
         db.collection("restaurants").updateOne(myquery, newvalues, function(err, res) {
             if (err) throw err;
             console.log("1 document updated");
@@ -60,7 +60,6 @@ app.post('/search',(req,res)=>{
     });
 app.get('/view',(req,res)=>{
      res.render('view.hbs');
-
     
        
 });
